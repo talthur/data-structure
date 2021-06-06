@@ -1,21 +1,21 @@
 package br.com.talthur.estruturadadosvetor;
 
-public class Vetor {
+public class VetorGenerics<T> {
 
-	private String[] elementos;
+	private T[] elementos;
 	private int tamanhoRealArray;
 
-	public Vetor(int capacidadeVetor) {
-		this.elementos = new String[capacidadeVetor];
+	public VetorGenerics(int capacidadeVetor) {
+		this.elementos =  (T[]) new Object[capacidadeVetor];
 		this.tamanhoRealArray = 0;
 	}
 
 	public void aumentaCapacidade() {
 
-		String[] arrayAumentado;
+		T[] arrayAumentado;
 
 		if (this.elementos.length == this.tamanhoRealArray) {
-			arrayAumentado = new String[tamanhoRealArray * 2];
+			arrayAumentado = (T[]) new Object[tamanhoRealArray * 2];
 			for (int i = 0; i < tamanhoRealArray; i++) {
 				arrayAumentado[i] = elementos[i];
 			}
@@ -23,7 +23,7 @@ public class Vetor {
 		}
 	}
 
-	public void adicionaQualquerLugar(int index, String elemento) {
+	public void adicionaQualquerLugar(int index, T elemento) {
 
 		if (index < 0 || index > this.tamanhoRealArray) {
 			throw new IllegalArgumentException("Index não existe");
@@ -39,7 +39,7 @@ public class Vetor {
 
 	}
 
-	public boolean adiciona(String elemento) {
+	public boolean adiciona(T elemento) {
 
 		this.aumentaCapacidade();
 		if (this.tamanhoRealArray < this.elementos.length) {
@@ -54,7 +54,7 @@ public class Vetor {
 		return this.tamanhoRealArray;
 	}
 
-	public String busca(int index) {
+	public T busca(int index) {
 
 		if (!(index >= 0 && index < tamanhoRealArray)) {
 			throw new IllegalArgumentException("Index não existe");
@@ -63,7 +63,7 @@ public class Vetor {
 		return elementos[index];
 	}
 
-	public int busca(String elementoBusca) {
+	public int busca(T elementoBusca) {
 
 		for (int i = 0; i < this.tamanhoRealArray; i++) {
 			if (elementoBusca.equals(elementos[i])) {
@@ -82,12 +82,16 @@ public class Vetor {
 		}
 
 		for (int i = elementoRemove; i < this.tamanhoRealArray - 1; i++) {
-			String pos = this.elementos[i+ 1];
+			T pos = this.elementos[i+ 1];
 			this.elementos[i] = pos;
 		}
 		
 		tamanhoRealArray --;
 
+	}
+	
+	public boolean contains(T elemento) {
+		return this.busca(elemento) > 0;
 	}
 
 	@Override

@@ -6,15 +6,19 @@ public class Aula7 {
 	
 	public static void main(String[] args) {
 		Vetor vetor = new Vetor(5);
-		vetor.adiciona("2");
+		vetor.adiciona("3");
 		vetor.adiciona("4");
 		vetor.adiciona("5");
 		vetor.adiciona("7");
-		vetor.adicionQualquerLugar(2, "10");
 		
-		vetor.adicionQualquerLugar(0, "2");
+		System.out.println(vetor.toString());
 		
-		vetor.adicionQualquerLugar(10, "2");
+		vetor.adicionaQualquerLugar(0, "7");
+		
+		System.out.println(vetor.toString());
+		
+		vetor.remove(0);
+		
 		System.out.println(vetor.toString());
 		}
 

@@ -10,33 +10,46 @@ public class Vetor {
 		this.tamanhoRealArray = 0;
 	}
 
-	public boolean adicionQualquerLugar(int index, String elemento) {
-		
-		if (elementos[index] == null) {
-			elementos[index] = elemento;
-			return true;
-		} else {
-			
-			if(this.elementos.length > this.tamanhoRealArray) {
-				
-				for (int i = tamanhoRealArray - 1; i >= index; i--) {
-					String ant = elementos[i];
-					elementos[i + 1] = ant;
-					
-				}
-				elementos[index] = elemento;
-				this.tamanhoRealArray++;
-				return true;
-				
-			}else {
-				throw new IllegalArgumentException("Index não existe");
+	public boolean aumentaCapacidade() {
+
+		String[] arrayAumentado;
+
+		if (this.elementos.length == this.tamanhoRealArray) {
+			arrayAumentado = new String[tamanhoRealArray * 2];
+			for (int i = 0; i < tamanhoRealArray; i++) {
+				arrayAumentado[i] = elementos[i];
 			}
+
+			this.elementos = arrayAumentado;
 		}
+
+		return true;
+
+	}
+
+	public boolean adicionQualquerLugar(int index, String elemento) {
+
+		
+		if(index < 0 || index > this.tamanhoRealArray) {
+			throw new IllegalArgumentException("Index não existe");
+
+		}
+		this.aumentaCapacidade();
+
+			for (int i = tamanhoRealArray - 1; i >= index; i--) {
+				String ant = elementos[i];
+				elementos[i + 1] = ant;
+
+			}
+			elementos[index] = elemento;
+			this.tamanhoRealArray++;
+			return true;
+
 	}
 
 	public boolean adiciona(String elemento) {
 
-		if (tamanhoRealArray < this.elementos.length) {
+		if (this.tamanhoRealArray < this.elementos.length) {
 			this.elementos[this.tamanhoRealArray] = elemento;
 			this.tamanhoRealArray++;
 			return true;

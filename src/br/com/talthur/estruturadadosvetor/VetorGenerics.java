@@ -53,6 +53,24 @@ public class VetorGenerics<T> {
 	public int tamanho() {
 		return this.tamanhoRealArray;
 	}
+	
+	public int ultimoIndex(T elementoBusca) {
+		
+		for (int i = this.tamanhoRealArray - 1; i >= 0; i--) {
+			if (elementoBusca.equals(elementos[i])) {
+				return i;
+			}
+		}
+		return -1;
+	}
+	
+	public void clear() {
+		this.elementos = (T[]) new Object[this.tamanhoRealArray];
+	}
+	
+	public T get(int index) {
+		return busca(index);
+	}
 
 	public T busca(int index) {
 
@@ -60,7 +78,7 @@ public class VetorGenerics<T> {
 			throw new IllegalArgumentException("Index não existe");
 		}
 
-		return elementos[index];
+		return this.elementos[index];
 	}
 
 	public int busca(T elementoBusca) {
@@ -88,6 +106,14 @@ public class VetorGenerics<T> {
 		
 		tamanhoRealArray --;
 
+	}
+	
+	public void remove(T elemento) {
+		int indice = busca(elemento);
+		if(indice > -1) {
+			remove(indice);	
+		}
+		
 	}
 	
 	public boolean contains(T elemento) {

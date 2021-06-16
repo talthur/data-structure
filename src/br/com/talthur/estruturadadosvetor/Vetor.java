@@ -22,6 +22,14 @@ public class Vetor {
 			this.elementos = arrayAumentado;
 		}
 	}
+	
+	public boolean contains(String elemento) {
+		return busca(elemento) > -1;
+	}
+	
+	public String ultimoIndice() {
+		return elementos[tamanhoRealArray - 1];
+	}
 
 	public void adicionaQualquerLugar(int index, String elemento) {
 
